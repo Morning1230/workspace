@@ -1,0 +1,120 @@
+package adc.maventest.project1.jsontest.gson;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+public class AllInAllGSON {
+	Gson gson = new Gson();// 生成一个json对象
+
+	/**
+	 * [1,2,3,4,5,6,7,8,9,0]
+	 * ["one","two","three","four","five","six","seven","eight","nine","zero"]
+	 * [[1,2,3],[3,4,5],[4,5,6]] 3 1n3 2n3 3n3 4n3 5n3 6n3 7n3 8n3 9n3 0n4 onen4
+	 * twon4 threen4 fourn4 fiven4 sixn4 sevenn4 eightn4 ninen4 zero data 1 data
+	 * 2 data 3 data 3 data 4 data 5 data 4 data 5 data 6
+	 */
+	public void arrayToJson() {
+		int[] n1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+		int[][] data = { { 1, 2, 3 }, { 3, 4, 5 }, { 4, 5, 6 } };
+		String[] n2 = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "zero" };
+
+		String x1 = gson.toJson(n1);// 把数组转化成json
+		String x2 = gson.toJson(n2);
+		String x3 = gson.toJson(data);
+		System.out.println(x1 + " " + x2 + " " + x3);
+		int[] n3 = gson.fromJson(x1, int[].class);// 把一个json转成数组
+		String[] n4 = gson.fromJson(x2, String[].class);
+		int[][] n5 = gson.fromJson(x3, int[][].class);
+		for (int i = 0; i < n3.length; i++) {
+			System.out.print("n3 " + n3[i]);
+		}
+		for (int i = 0; i < n4.length; i++) {
+			System.out.print("n4 " + n4[i]);
+		}
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; j < data[i].length; j++) {
+				System.out.print(" data " + data[i][j]);
+			}
+			System.out.println("");
+		}
+	}
+
+	/**
+	 * list ["hi","hello","how"]
+	 * [{"name":"Alice","address":"AppSt","dateOfBirth":
+	 * "Nov 1, 3900 12:00:00 AM"},{"name":"Bob","address":"Baa St"
+	 * },{"name":"Carol","address":"Grape St","dateOfBirth":
+	 * "Jun 21, 3900 12:00:00 AM"},{"name":"Mallory","address":"Mango St"}] name
+	 * Alice name Bob name Carol name Mallory
+	 */
+	public void listToJson() {
+		List<String> list = new ArrayList<String>();// 把一个list集合转化成json串
+		list.add("hi");
+		list.add("hello");
+		list.add("how");
+		String str = gson.toJson(list);
+		System.out.println("list " + str);
+		Student a = new Student("Alice", "AppSt", new Date(2000, 10, 1));
+		Student b = new Student("Bob", "Baa St", null);
+		Student c = new Student("Carol", "Grape St", new Date(2000, 5, 21));
+		Student d = new Student("Mallory", "Mango St", null);
+		List<Student> student = new ArrayList<Student>();
+		student.add(a);
+		student.add(b);
+		student.add(c);
+		student.add(d);
+		String str1 = gson.toJson(student);
+		System.out.println(str1);
+		Type type = new TypeToken<List<Student>>() {
+		}.getType();// 把json串转化成一个student对象
+		List<Student> stu = gson.fromJson(str1, type);
+		for (Student s : stu) {
+			System.out.println("name " + s.getName());
+		}
+	}
+
+	/**
+	 * {"WHITE":"5454#FFFFFF","BLUE":"0000FF","YELLOW":"sd#FFFF00","GREEN":
+	 * "1008000","BLACK":"000000","RED":"#FeF0000"} map 5454#FFFFFF map 0000FF
+	 * map sd#FFFF00 map 1008000 map 000000 map #FeF0000
+	 */
+	public void mapToJson() {
+		Map<String, String> colours = new HashMap<String, String>();
+		colours.put("BLACK", "000000");
+		colours.put("RED", "#FeF0000");
+		colours.put("GREEN", "1008000");
+		colours.put("BLUE", "0000FF");
+		colours.put("YELLOW", "sd#FFFF00");
+		colours.put("WHITE", "5454#FFFFFF");
+		String str = gson.toJson(colours);
+		System.out.println(str);
+		Type type = new TypeToken<Map<String, String>>() {
+		}.getType();
+		Map<String, String> map = gson.fromJson(str, type);
+		for (String key : map.keySet()) {
+			System.out.println("map " + map.get(key));
+		}
+	}
+
+	/**
+	 * {"name":"Bob","address":"Baa St"} Bob
+	 */
+	public void stuClass() {
+		Student b = new Student("Bob", "Baa St", null);// 对一个类的属性进行转成json串
+		String str = gson.toJson(b);
+		System.out.println(str);
+		Student stu = gson.fromJson(str, Student.class);// 把json转成java对象
+		System.out.println(stu.getName());
+	}
+}

@@ -1,0 +1,33 @@
+package adc.maventest.project1.jsontest.simplejson;
+
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Hashtable;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.json.simple.JSONStreamAware;
+import org.json.simple.JSONValue;
+public class QueryAttribute implements JSONStreamAware {
+
+	   private String query;
+	   private String cat;
+	   private int guanwang;
+	   private String icon;
+	   private String entity_name;
+	   private double score;
+	   private String clkurl;
+
+	   public QueryAttribute(String query, double score) {
+	     this.query = query;
+	     this.score = score;
+	   }
+
+	   public void writeJSONString(Writer out) throws IOException {
+		 LinkedHashMap obj = new LinkedHashMap();
+	     obj.put("query", query);
+	     obj.put("score", score);
+	     
+	     JSONValue.writeJSONString(obj, out);
+	   }
+	}

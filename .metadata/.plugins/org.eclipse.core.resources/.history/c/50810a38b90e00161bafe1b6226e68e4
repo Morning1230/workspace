@@ -1,0 +1,31 @@
+package adc.maventest.project1;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONValue;
+
+import adc.maventest.project1.jsontest.QueryAttribute;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	QueryAttribute qa = new QueryAttribute("English",100);
+    	try {
+    		FileWriter fw = new FileWriter("tmpfle.log");
+			qa.writeJSONString(fw);
+			fw.close();
+		} catch (IOException e) {
+			java.lang.System.out.println("err");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+}
