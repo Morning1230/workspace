@@ -1,14 +1,9 @@
 package adc.maventest.project1;
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONValue;
-
-import adc.maventest.project1.jsontest.simplejson.*;
-
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+
+import adc.maventest.project1.jsontest.simplejson.QueryAttribute;
 
 /**
  * Hello world!
