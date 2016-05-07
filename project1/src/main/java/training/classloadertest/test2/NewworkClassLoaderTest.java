@@ -1,4 +1,4 @@
-package adc.classloadertest.test2;
+package training.classloadertest.test2;
 
 
 public class NewworkClassLoaderTest {
