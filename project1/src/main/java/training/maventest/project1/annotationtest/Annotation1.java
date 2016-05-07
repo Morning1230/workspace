@@ -1,4 +1,4 @@
-package adc.maventest.project1.annotationtest;
+package training.maventest.project1.annotationtest;
 
 public @interface Annotation1 {
 	int    id();

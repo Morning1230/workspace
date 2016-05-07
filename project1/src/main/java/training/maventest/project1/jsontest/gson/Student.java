@@ -1,4 +1,4 @@
-package adc.maventest.project1.jsontest.gson;
+package training.maventest.project1.jsontest.gson;
 
 import java.util.Date;
 

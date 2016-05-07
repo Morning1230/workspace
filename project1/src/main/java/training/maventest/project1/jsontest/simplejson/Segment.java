@@ -1,4 +1,4 @@
-package adc.maventest.project1.jsontest.simplejson;
+package training.maventest.project1.jsontest.simplejson;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

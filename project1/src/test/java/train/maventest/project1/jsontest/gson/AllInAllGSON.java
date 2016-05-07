@@ -1,4 +1,4 @@
-package adc.maventest.project1.jsontest.gson;
+package train.maventest.project1.jsontest.gson;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import junit.framework.TestCase;
+import training.maventest.project1.jsontest.gson.Student;
 
 public class AllInAllGSON extends TestCase{
 	Gson gson = new Gson();// 生成一个json对象

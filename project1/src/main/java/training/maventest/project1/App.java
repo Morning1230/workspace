@@ -1,9 +1,9 @@
-package adc.maventest.project1;
+package training.maventest.project1;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-import adc.maventest.project1.jsontest.simplejson.QueryAttribute;
+import training.maventest.project1.jsontest.simplejson.QueryAttribute;
 
 /**
  * Hello world!
